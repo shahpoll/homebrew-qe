@@ -17,6 +17,28 @@ class QeAppleSiliconBuild < Formula
     bin.install_symlink libexec/"bin/qe-apple-silicon-build"
   end
 
+  def caveats
+    <<~EOS
+      qe-apple-silicon-build is now installed. To install Quantum ESPRESSO, run:
+
+        qe-apple-silicon-build install --qe-tag qe-7.5 --install-prefix "$HOME/opt/qe-7.5"
+
+      Or use the interactive menu:
+
+        qe-apple-silicon-build menu
+
+      After installation, validate your build with:
+
+        qe-apple-silicon-build check --qe-bin "$HOME/opt/qe-7.5/bin"
+
+      For full documentation, see:
+        https://github.com/shahpoll/qe_apple_silicon_build
+
+      Tip: short alias install (if enabled in this tap):
+        brew install shahpoll/qe/qe
+    EOS
+  end
+
   test do
     assert_match "Usage:", shell_output("#{bin}/qe-apple-silicon-build help")
   end
